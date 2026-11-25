@@ -38,10 +38,13 @@ A complete Python Django web project demonstrating how to query database models 
 
 ### 3. [Simple Bootstrap Dashboard](./Simple%20Bootstrap%20Dashboard)
 
-A responsive, lightweight dashboard layout built with Bootstrap and CanvasJS.
-* Overview statistics and KPI summary cards.
-* Clean visual aesthetics with multiple chart types.
-* Ideal starting template for admin panels and SaaS reporting.
+A responsive, modern executive analytics dashboard built with Bootstrap 5.3 and CanvasJS Charts.
+* **Light & Dark Theme Toggle**: One-click theme switcher that updates both the UI and CanvasJS chart themes (`light2` &harr; `dark2`).
+* **KPI Sparkline Cards**: Total revenue, active users, orders, and conversion rate with embedded mini-charts.
+* **Multi-Series Revenue & Profit Chart**: Compare revenue, profit, and targets with dynamic period filters (`7D`, `1M`, `6M`, `1Y`).
+* **Traffic Sources & Category Sales**: Donut chart with center metrics and horizontal bar chart breakdown.
+* **Recent Orders Table**: Customer order tracking with status badges.
+* **Modern & Clean**: Built with pure Vanilla JS (zero jQuery dependencies) and CanvasJS loaded via CDN.
 
 ---
 
