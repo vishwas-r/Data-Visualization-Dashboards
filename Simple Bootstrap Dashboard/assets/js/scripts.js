@@ -30,7 +30,15 @@
       lineThickness: 0,
       tickLength: 0,
       margin: 0,
-      labelFormatter: function () { return ""; }
+      labelFormatter: function () { return ""; },
+      crosshair: {
+        enabled: true,
+        snapToDataPoint: true,
+        color: "rgba(99, 102, 241, 0.45)",
+        lineDashType: "dash",
+        labelEnabled: false,
+        labelFormatter: function () { return ""; }
+      }
     },
     axisY: {
       lineThickness: 0,
@@ -42,7 +50,8 @@
     toolTip: {
       enabled: true,
       animationEnabled: true,
-      cornerRadius: 6
+      cornerRadius: 6,
+      fontFamily: appFontFamily
     }
   };
 
@@ -53,11 +62,11 @@
       color: "#4f46e5",
       fillOpacity: 0.15,
       markerSize: 0,
-      toolTipContent: "Revenue: ${y}k",
+      toolTipContent: "{label} Revenue: <strong>${y}k</strong>",
       dataPoints: [
-        { y: 14 }, { y: 18 }, { y: 16 }, { y: 22 }, { y: 19 },
-        { y: 25 }, { y: 23 }, { y: 29 }, { y: 27 }, { y: 32 },
-        { y: 30 }, { y: 35 }, { y: 33 }, { y: 38 }
+        { label: "Jan", y: 16 }, { label: "Feb", y: 19 }, { label: "Mar", y: 18 }, { label: "Apr", y: 22 },
+        { label: "May", y: 21 }, { label: "Jun", y: 25 }, { label: "Jul", y: 24 }, { label: "Aug", y: 29 },
+        { label: "Sep", y: 27 }, { label: "Oct", y: 32 }, { label: "Nov", y: 34 }, { label: "Dec", y: 38 }
       ]
     }]
   }));
@@ -70,11 +79,11 @@
       color: "#10b981",
       fillOpacity: 0.15,
       markerSize: 0,
-      toolTipContent: "Active Users: {y}",
+      toolTipContent: "{label} Users: <strong>{y}</strong>",
       dataPoints: [
-        { y: 210 }, { y: 245 }, { y: 230 }, { y: 280 }, { y: 310 },
-        { y: 295 }, { y: 340 }, { y: 365 }, { y: 350 }, { y: 395 },
-        { y: 420 }, { y: 410 }, { y: 450 }, { y: 480 }
+        { label: "Jan", y: 220 }, { label: "Feb", y: 245 }, { label: "Mar", y: 235 }, { label: "Apr", y: 280 },
+        { label: "May", y: 310 }, { label: "Jun", y: 300 }, { label: "Jul", y: 345 }, { label: "Aug", y: 365 },
+        { label: "Sep", y: 380 }, { label: "Oct", y: 410 }, { label: "Nov", y: 435 }, { label: "Dec", y: 480 }
       ]
     }]
   }));
@@ -87,11 +96,11 @@
       color: "#f59e0b",
       fillOpacity: 0.16,
       markerSize: 0,
-      toolTipContent: "Orders: {y}",
+      toolTipContent: "{label} Orders: <strong>{y}</strong>",
       dataPoints: [
-        { y: 28 }, { y: 34 }, { y: 45 }, { y: 38 }, { y: 52 },
-        { y: 46 }, { y: 60 }, { y: 54 }, { y: 65 }, { y: 58 },
-        { y: 72 }, { y: 64 }, { y: 80 }, { y: 75 }
+        { label: "Jan", y: 32 }, { label: "Feb", y: 38 }, { label: "Mar", y: 46 }, { label: "Apr", y: 40 },
+        { label: "May", y: 52 }, { label: "Jun", y: 48 }, { label: "Jul", y: 60 }, { label: "Aug", y: 56 },
+        { label: "Sep", y: 66 }, { label: "Oct", y: 62 }, { label: "Nov", y: 74 }, { label: "Dec", y: 78 }
       ]
     }]
   }));
@@ -105,11 +114,11 @@
       fillOpacity: 0.15,
       markerSize: 0,
       lineThickness: 2,
-      toolTipContent: "Conversion: {y}%",
+      toolTipContent: "{label} Conv. Rate: <strong>{y}%</strong>",
       dataPoints: [
-        { y: 2.8 }, { y: 2.9 }, { y: 3.1 }, { y: 3.0 }, { y: 3.3 },
-        { y: 3.2 }, { y: 3.5 }, { y: 3.4 }, { y: 3.6 }, { y: 3.5 },
-        { y: 3.8 }, { y: 3.7 }, { y: 3.9 }, { y: 4.1 }
+        { label: "Jan", y: 2.8 }, { label: "Feb", y: 2.9 }, { label: "Mar", y: 3.1 }, { label: "Apr", y: 3.0 },
+        { label: "May", y: 3.3 }, { label: "Jun", y: 3.2 }, { label: "Jul", y: 3.5 }, { label: "Aug", y: 3.4 },
+        { label: "Sep", y: 3.6 }, { label: "Oct", y: 3.6 }, { label: "Nov", y: 3.8 }, { label: "Dec", y: 4.1 }
       ]
     }]
   }));
@@ -169,6 +178,7 @@
     toolTip: {
       shared: true,
       cornerRadius: 8,
+      fontFamily: appFontFamily,
       contentFormatter: function (e) {
         var content = "<strong>" + e.entries[0].dataPoint.label + "</strong><br/>";
         for (var i = 0; i < e.entries.length; i++) {
@@ -199,7 +209,14 @@
       lineColor: "#e2e8f0",
       tickLength: 0,
       labelFontColor: "#64748b",
-      labelFontSize: 12
+      labelFontSize: 12,
+      crosshair: {
+        enabled: true,
+        snapToDataPoint: true,
+        color: "#6366f1",
+        lineDashType: "dash",
+        labelBackgroundColor: "#4f46e5"
+      }
     },
     axisY: {
       lineThickness: 0,
@@ -257,6 +274,9 @@
       revenueOverviewChart.options.data[1].dataPoints = updated.profPoints;
       revenueOverviewChart.options.data[2].dataPoints = updated.targetPoints;
       revenueOverviewChart.render();
+      if (syncDashboard) {
+        syncDashboard.refresh();
+      }
     });
   });
 
@@ -362,6 +382,26 @@
   registeredCharts.forEach(function (chart) {
     chart.render();
   });
+
+  // ----------------------------------------------------
+  // Synchronize Tooltips & Crosshairs across Charts
+  // using canvasjs-sync-charts (loaded from jsDelivr)
+  // ----------------------------------------------------
+  var syncDashboard = null;
+  if (window.CanvasJS && typeof CanvasJS.syncCharts === "function") {
+    syncDashboard = CanvasJS.syncCharts([
+      sparklineRevenue,
+      sparklineSubscriptions,
+      sparklineOrders,
+      sparklineConversion,
+      revenueOverviewChart
+    ], {
+      zoom: false,
+      tooltip: true,
+      crosshair: true,
+      alignPlotAreas: false
+    });
+  }
 
   // ----------------------------------------------------
   // 5. Theme Toggling (Light <-> Dark)
