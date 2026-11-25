@@ -371,17 +371,26 @@ body {
 
 /* ---------------- KPI Stat Cards ---------------- */
 .kpi-card {
-  padding: 1.35rem 1.45rem;
+  position: relative;
+  overflow: hidden;
+  padding: 1.35rem 1.45rem 0.5rem 1.45rem;
+  min-height: 175px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.kpi-content {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .kpi-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.4rem;
 }
 
 .kpi-icon-wrap {
@@ -408,18 +417,22 @@ body {
 }
 
 .kpi-value {
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.03em;
-  margin: 0.25rem 0 0.4rem 0;
+  margin: 0.15rem 0 0.35rem 0;
 }
 
-.kpi-bottom {
+.kpi-badge-wrap {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 0.5rem;
+  gap: 0.45rem;
+}
+
+.kpi-period {
+  font-size: 0.76rem;
+  color: var(--text-muted);
 }
 
 .trend-badge {
@@ -442,9 +455,19 @@ body {
   color: var(--danger);
 }
 
-.kpi-sparkline-container {
-  height: 50px;
-  width: 110px;
+.kpi-chart-bg {
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: -4px;
+  width: calc(100% + 4px);
+  height: 85px;
+  z-index: 1;
+}
+
+.kpi-sparkline-chart {
+  width: 100%;
+  height: 85px;
 }
 
 /* ---------------- Chart Containers ---------------- */

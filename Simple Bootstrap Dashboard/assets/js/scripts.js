@@ -18,12 +18,13 @@
   }
 
   // ----------------------------------------------------
-  // 1. KPI Sparkline Charts
+  // 1. KPI Sparkline Charts (Full Card Background Width)
   // ----------------------------------------------------
   var commonSparklineOptions = {
     backgroundColor: "transparent",
     animationEnabled: true,
     theme: getCanvasTheme(),
+    margin: 0,
     axisX: {
       lineThickness: 0,
       tickLength: 0,
@@ -49,12 +50,13 @@
     data: [{
       type: "splineArea",
       color: "#4f46e5",
-      fillOpacity: 0.18,
+      fillOpacity: 0.15,
       markerSize: 0,
       toolTipContent: "Revenue: ${y}k",
       dataPoints: [
         { y: 14 }, { y: 18 }, { y: 16 }, { y: 22 }, { y: 19 },
-        { y: 25 }, { y: 23 }, { y: 29 }, { y: 28 }, { y: 34 }
+        { y: 25 }, { y: 23 }, { y: 29 }, { y: 27 }, { y: 32 },
+        { y: 30 }, { y: 35 }, { y: 33 }, { y: 38 }
       ]
     }]
   }));
@@ -65,12 +67,13 @@
     data: [{
       type: "splineArea",
       color: "#10b981",
-      fillOpacity: 0.18,
+      fillOpacity: 0.15,
       markerSize: 0,
       toolTipContent: "Active Users: {y}",
       dataPoints: [
         { y: 210 }, { y: 245 }, { y: 230 }, { y: 280 }, { y: 310 },
-        { y: 295 }, { y: 340 }, { y: 365 }, { y: 350 }, { y: 395 }
+        { y: 295 }, { y: 340 }, { y: 365 }, { y: 350 }, { y: 395 },
+        { y: 420 }, { y: 410 }, { y: 450 }, { y: 480 }
       ]
     }]
   }));
@@ -81,9 +84,12 @@
     data: [{
       type: "column",
       color: "#f59e0b",
+      fillOpacity: 0.7,
+      dataPointWidth: 10,
       dataPoints: [
         { y: 28 }, { y: 34 }, { y: 45 }, { y: 38 }, { y: 52 },
-        { y: 46 }, { y: 60 }, { y: 54 }, { y: 65 }, { y: 58 }
+        { y: 46 }, { y: 60 }, { y: 54 }, { y: 65 }, { y: 58 },
+        { y: 72 }, { y: 64 }, { y: 80 }, { y: 75 }
       ]
     }]
   }));
@@ -92,14 +98,16 @@
   // Sparkline 4: Conversion Rate
   var sparklineConversion = new CanvasJS.Chart("sparklineConversion", Object.assign({}, commonSparklineOptions, {
     data: [{
-      type: "spline",
+      type: "splineArea",
       color: "#0ea5e9",
+      fillOpacity: 0.15,
       markerSize: 0,
-      lineThickness: 3,
+      lineThickness: 2,
       toolTipContent: "Conversion: {y}%",
       dataPoints: [
         { y: 2.8 }, { y: 2.9 }, { y: 3.1 }, { y: 3.0 }, { y: 3.3 },
-        { y: 3.2 }, { y: 3.5 }, { y: 3.4 }, { y: 3.6 }, { y: 3.8 }
+        { y: 3.2 }, { y: 3.5 }, { y: 3.4 }, { y: 3.6 }, { y: 3.5 },
+        { y: 3.8 }, { y: 3.7 }, { y: 3.9 }, { y: 4.1 }
       ]
     }]
   }));
@@ -272,23 +280,15 @@
     backgroundColor: "transparent",
     animationEnabled: true,
     theme: getCanvasTheme(),
-    title: {
-      text: "142.8k",
+    subtitles: [{
+      text: "142.8k Visits",
       verticalAlign: "center",
       horizontalAlign: "center",
       dockInsidePlotArea: true,
-      fontSize: 24,
+      maxWidth: 90,
+      fontSize: 18,
       fontWeight: "bold",
       fontColor: currentTheme === "dark" ? "#f8fafc" : "#1e293b"
-    },
-    subtitles: [{
-      text: "Total Visits",
-      verticalAlign: "center",
-      horizontalAlign: "center",
-      dockInsidePlotArea: true,
-      fontSize: 12,
-      fontColor: "#64748b",
-      margin: 22
     }],
     legend: {
       verticalAlign: "bottom",
@@ -394,9 +394,9 @@
         chart.set("backgroundColor", "transparent");
       });
 
-      // Update donut center title color
-      if (trafficSourcesChart.options.title) {
-        trafficSourcesChart.options.title.fontColor = currentTheme === "dark" ? "#f8fafc" : "#1e293b";
+      // Update donut center text color
+      if (trafficSourcesChart.options.subtitles && trafficSourcesChart.options.subtitles[0]) {
+        trafficSourcesChart.options.subtitles[0].fontColor = currentTheme === "dark" ? "#f8fafc" : "#1e293b";
         trafficSourcesChart.render();
       }
     });
