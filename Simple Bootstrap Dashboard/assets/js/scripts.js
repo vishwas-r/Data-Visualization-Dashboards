@@ -12,6 +12,7 @@
   // Theme Management
   var currentTheme = localStorage.getItem("app-theme") || "light";
   document.documentElement.setAttribute("data-theme", currentTheme);
+  var appFontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
   function getCanvasTheme() {
     return currentTheme === "dark" ? "dark2" : "light2";
@@ -184,7 +185,7 @@
       verticalAlign: "top",
       horizontalAlign: "right",
       fontSize: 12,
-      fontFamily: "inherit",
+      fontFamily: appFontFamily,
       itemclick: function (e) {
         if (typeof e.dataSeries.visible === "undefined" || e.dataSeries.visible) {
           e.dataSeries.visible = false;
@@ -295,7 +296,7 @@
       verticalAlign: "bottom",
       horizontalAlign: "center",
       fontSize: 11,
-      fontFamily: "inherit"
+      fontFamily: appFontFamily
     },
     toolTip: {
       cornerRadius: 6,
