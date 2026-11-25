@@ -371,36 +371,49 @@ body {
 
 /* ---------------- KPI Stat Cards ---------------- */
 .kpi-card {
-  position: relative;
-  overflow: hidden;
-  padding: 1.35rem 1.45rem 0.5rem 1.45rem;
-  min-height: 175px;
+  padding: 1.25rem 1.25rem 0 1.25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.kpi-content {
-  position: relative;
-  z-index: 2;
-  pointer-events: none;
+  overflow: hidden;
+  border-radius: var(--radius-card);
 }
 
 .kpi-top {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.kpi-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.kpi-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0;
 }
 
 .kpi-icon-wrap {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
+  flex-shrink: 0;
 }
 
 .kpi-icon-primary { background: var(--primary-subtle); color: var(--primary); }
@@ -408,40 +421,26 @@ body {
 .kpi-icon-warning { background: var(--warning-subtle); color: var(--warning); }
 .kpi-icon-info    { background: var(--info-subtle); color: var(--info); }
 
-.kpi-label {
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-secondary);
-}
-
-.kpi-value {
-  font-size: 1.85rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.03em;
-  margin: 0.15rem 0 0.35rem 0;
-}
-
 .kpi-badge-wrap {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+  margin-bottom: 0.5rem;
 }
 
 .kpi-period {
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
 }
 
 .trend-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.2rem 0.55rem;
+  gap: 0.25rem;
+  padding: 0.18rem 0.5rem;
   border-radius: var(--radius-pill);
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   font-weight: 600;
 }
 
@@ -455,19 +454,18 @@ body {
   color: var(--danger);
 }
 
-.kpi-chart-bg {
-  position: absolute;
-  left: -2px;
-  right: -2px;
-  bottom: -4px;
-  width: calc(100% + 4px);
-  height: 85px;
-  z-index: 1;
+.kpi-chart-wrap {
+  margin-left: -1.25rem;
+  margin-right: -1.25rem;
+  margin-bottom: -4px;
+  width: calc(100% + 2.5rem);
+  height: 65px;
+  position: relative;
 }
 
 .kpi-sparkline-chart {
   width: 100%;
-  height: 85px;
+  height: 65px;
 }
 
 /* ---------------- Chart Containers ---------------- */

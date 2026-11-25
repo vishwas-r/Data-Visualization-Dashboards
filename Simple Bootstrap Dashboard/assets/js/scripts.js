@@ -281,19 +281,19 @@
     animationEnabled: true,
     theme: getCanvasTheme(),
     subtitles: [{
-      text: "142.8k Visits",
+      text: "142.8k\nVisits",
       verticalAlign: "center",
       horizontalAlign: "center",
       dockInsidePlotArea: true,
-      maxWidth: 90,
-      fontSize: 18,
+      maxWidth: 80,
+      fontSize: 16,
       fontWeight: "bold",
       fontColor: currentTheme === "dark" ? "#f8fafc" : "#1e293b"
     }],
     legend: {
       verticalAlign: "bottom",
       horizontalAlign: "center",
-      fontSize: 12,
+      fontSize: 11,
       fontFamily: "inherit"
     },
     toolTip: {
@@ -303,8 +303,8 @@
     data: [{
       type: "doughnut",
       startAngle: -90,
-      innerRadius: "72%",
-      radius: "95%",
+      innerRadius: "64%",
+      radius: "82%",
       showInLegend: true,
       dataPoints: [
         { y: 38, name: "Direct", color: "#4f46e5", shares: "54.2k" },
