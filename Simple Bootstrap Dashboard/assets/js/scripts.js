@@ -82,10 +82,11 @@
   // Sparkline 3: Orders
   var sparklineOrders = new CanvasJS.Chart("sparklineOrders", Object.assign({}, commonSparklineOptions, {
     data: [{
-      type: "column",
+      type: "splineArea",
       color: "#f59e0b",
-      fillOpacity: 0.7,
-      dataPointWidth: 10,
+      fillOpacity: 0.16,
+      markerSize: 0,
+      toolTipContent: "Orders: {y}",
       dataPoints: [
         { y: 28 }, { y: 34 }, { y: 45 }, { y: 38 }, { y: 52 },
         { y: 46 }, { y: 60 }, { y: 54 }, { y: 65 }, { y: 58 },
@@ -281,11 +282,11 @@
     animationEnabled: true,
     theme: getCanvasTheme(),
     subtitles: [{
-      text: "142.8k\nVisits",
+      text: "142.8k\nTotal Visits",
       verticalAlign: "center",
       horizontalAlign: "center",
       dockInsidePlotArea: true,
-      maxWidth: 80,
+      maxWidth: 130,
       fontSize: 16,
       fontWeight: "bold",
       fontColor: currentTheme === "dark" ? "#f8fafc" : "#1e293b"

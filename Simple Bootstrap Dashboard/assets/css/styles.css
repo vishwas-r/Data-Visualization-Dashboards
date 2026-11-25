@@ -372,47 +372,33 @@ body {
 /* ---------------- KPI Stat Cards ---------------- */
 .kpi-card {
   padding: 1.25rem 1.25rem 0 1.25rem;
+  border-radius: var(--radius-card);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-  border-radius: var(--radius-card);
 }
 
-.kpi-top {
+.kpi-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.85rem;
 }
 
-.kpi-label {
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-secondary);
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-.kpi-value {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin: 0;
+.kpi-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
 }
 
 .kpi-icon-wrap {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.15rem;
+  font-size: 1rem;
   flex-shrink: 0;
 }
 
@@ -421,26 +407,19 @@ body {
 .kpi-icon-warning { background: var(--warning-subtle); color: var(--warning); }
 .kpi-icon-info    { background: var(--info-subtle); color: var(--info); }
 
-.kpi-badge-wrap {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 0.35rem;
-  margin-bottom: 0.5rem;
-}
-
-.kpi-period {
-  font-size: 0.75rem;
-  color: var(--text-muted);
+.kpi-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
 }
 
 .trend-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  padding: 0.18rem 0.5rem;
+  padding: 0.2rem 0.55rem;
   border-radius: var(--radius-pill);
-  font-size: 0.73rem;
+  font-size: 0.74rem;
   font-weight: 600;
 }
 
@@ -454,18 +433,38 @@ body {
   color: var(--danger);
 }
 
+.kpi-metric-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.kpi-value {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.kpi-period {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
 .kpi-chart-wrap {
   margin-left: -1.25rem;
   margin-right: -1.25rem;
-  margin-bottom: -4px;
+  margin-bottom: -1px;
   width: calc(100% + 2.5rem);
-  height: 65px;
-  position: relative;
+  height: 70px;
 }
 
 .kpi-sparkline-chart {
   width: 100%;
-  height: 65px;
+  height: 70px;
 }
 
 /* ---------------- Chart Containers ---------------- */
