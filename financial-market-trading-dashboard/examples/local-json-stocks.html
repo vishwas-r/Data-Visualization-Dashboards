@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stock history from local JSON</title>
+<link rel="stylesheet" href="../market-dashboard.css">
+<style>html, body { margin: 0; }</style>
+</head>
+<body>
+<div id="app"></div>
+
+<!-- 1. Download real daily history once:   node scripts/download-stock-history.js
+     2. Serve the folder over http:         node serve.js
+     3. Open http://localhost:8080/market-dashboard/examples/local-json-stocks.html -->
+<!-- CanvasJS (StockChart bundle loaded from CDN) -->
+<script src="https://cdn.canvasjs.com/canvasjs.stock.min.js"></script>
+<!-- Plugins -->
+<script src="../vendor/canvasjs-heatmap.js"></script>
+<script src="../vendor/technical-indicators/technical-indicators-core.js"></script>
+<script src="../vendor/technical-indicators/indicators/simple-moving-average.js"></script>
+<script src="../vendor/technical-indicators/indicators/exponential-moving-average.js"></script>
+<script src="../vendor/technical-indicators/indicators/bollinger-bands.js"></script>
+<script src="../vendor/technical-indicators/indicators/relative-strength-index.js"></script>
+<script src="../vendor/technical-indicators/indicators/moving-average-convergence-divergence.js"></script>
+<script src="../vendor/technical-indicators/indicators/stochastic-oscillator.js"></script>
+<script src="../vendor/technical-indicators/indicators/average-true-range.js"></script>
+<script src="../vendor/technical-indicators/indicators/on-balance-volume.js"></script>
+<script src="../market-statistics.js"></script>
+<script src="../data-sources/market-data-sources.js"></script>
+<script src="../market-dashboard.js"></script>
+<script>
+  var dashboard = MarketDashboard.create("app", {
+    title: "Stock Desk",
+    dataSource: MarketDataSources.localJson({ baseUrl: "../../data/stocks/" })
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Market Desk with your own data</title>
+<link rel="stylesheet" href="../market-dashboard.css">
+<style>html, body { margin: 0; }</style>
+</head>
+<body>
+<div id="app"></div>
+
+<!-- CanvasJS (StockChart bundle loaded from CDN) -->
+<script src="https://cdn.canvasjs.com/canvasjs.stock.min.js"></script>
+<!-- Plugins -->
+<script src="../vendor/canvasjs-heatmap.js"></script>
+<script src="../vendor/technical-indicators/technical-indicators-core.js"></script>
+<script src="../vendor/technical-indicators/indicators/simple-moving-average.js"></script>
+<script src="../vendor/technical-indicators/indicators/exponential-moving-average.js"></script>
+<script src="../vendor/technical-indicators/indicators/bollinger-bands.js"></script>
+<script src="../vendor/technical-indicators/indicators/relative-strength-index.js"></script>
+<script src="../vendor/technical-indicators/indicators/moving-average-convergence-divergence.js"></script>
+<script src="../vendor/technical-indicators/indicators/on-balance-volume.js"></script>
+<script src="../market-statistics.js"></script>
+<script src="../market-dashboard.js"></script><!-- no sample-market-data.js: everything below is yours -->
+<script>
+  // 1. Historical data: an object keyed by symbol (or a function(symbol, callback) that fetches it).
+  //    Your own field names are fine, just map them with "fields".
+  function createRows(startPrice, days) {
+    var rows = [];
+    var price = startPrice;
+    var date = new Date();
+    var seed = startPrice;
+
+    date.setDate(date.getDate() - days);
+
+    for(var i = 0; i < days; i++) {
+      seed = (seed * 9301 + 49297) % 233280;
+      price = price * (1 + (seed / 233280 - 0.48) * 0.03);
+      date.setDate(date.getDate() + 1);
+
+      if(date.getDay() !== 0 && date.getDay() !== 6) {
+        rows.push({ t: date.getTime(), o: price * 0.998, h: price * 1.01, l: price * 0.99, c: price, v: 1000000 + (seed % 500000) });
+      }
+    }
+
+    return rows;
+  }
+
+  var priceHistory = { ACME: createRows(80, 900), GLOBEX: createRows(45, 900) };
+
+  var dashboard = MarketDashboard.create("app", {
+    title: "Acme Trading",
+    symbols: [{ symbol: "ACME", name: "Acme Corp." }, { symbol: "GLOBEX", name: "Globex Inc." }],
+    currency: "\u20AC",
+    fields: { date: "t", open: "o", high: "h", low: "l", close: "c", volume: "v" },
+    historical: priceHistory,
+    realtime: {
+      // 2. Realtime: call onTick({ time, price, volume }) whenever your feed delivers a trade.
+      subscribe: function(symbol, onTick) {
+        var price = priceHistory[symbol][priceHistory[symbol].length - 1].c;
+        var timer = window.setInterval(function() {
+          price = price * (1 + (Math.random() - 0.5) * 0.002);
+          onTick({ time: new Date().getTime(), price: price, volume: Math.round(Math.random() * 300) });
+        }, 700);
+
+        return function() {
+          window.clearInterval(timer);
+        };
+      }
+    }
+  });
+  // Or push ticks yourself, for example from a WebSocket message:
+  //   dashboard.pushTick("ACME", { time: Date.now(), price: 81.2, volume: 150 });
+</script>
+</body>
+</html>
