@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Modern Responsive Executive Dashboard built with Bootstrap 5 and CanvasJS Charts">
+    <title>Executive Analytics Dashboard | CanvasJS Charts & Bootstrap 5</title>
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <!-- Custom Dashboard Styles -->
+    <link href="assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="dashboard-wrapper">
+    <!-- ================= Sidebar ================= -->
+    <aside class="dashboard-sidebar" id="dashboardSidebar">
+        <a href="#" class="sidebar-brand">
+            <span class="brand-icon">
+                <i class="fa-solid fa-chart-simple"></i>
+            </span>
+            <span>AnalyticsPro</span>
+        </a>
+
+        <div class="sidebar-body">
+            <div class="sidebar-section-title">Overview</div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link active">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                        <span>Sales Performance</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-section-title mt-3">Management</div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Customers</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                        <span>Products</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link">
+                        <i class="fa-solid fa-receipt"></i>
+                        <span>Transactions</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-section-title mt-3">Preferences</div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link">
+                        <i class="fa-solid fa-circle-question"></i>
+                        <span>Help Center</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-footer">
+            <img src="assets/images/dp.png" alt="User avatar" class="user-avatar-sm" onerror="this.src='https://ui-avatars.com/api/?name=John+Doe&background=4f46e5&color=fff'">
+            <div class="user-details">
+                <div class="user-name">John Doe</div>
+                <div class="user-role">Administrator</div>
+            </div>
+            <a href="#" class="text-secondary" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </aside>
+
+    <!-- Sidebar Overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ================= Main Content Container ================= -->
+    <div class="dashboard-main">
+        <!-- Top Navbar -->
+        <header class="dashboard-navbar">
+            <div class="d-flex align-items-center gap-3">
+                <button class="icon-btn d-lg-none" id="sidebarToggleBtn" aria-label="Toggle sidebar">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="navbar-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" class="form-control" placeholder="Search metrics, orders, reports...">
+                </div>
+            </div>
+
+            <div class="navbar-actions">
+                <!-- Theme Toggle Button -->
+                <button class="icon-btn" id="themeToggleBtn" title="Toggle Light / Dark mode" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon" id="themeIcon"></i>
+                </button>
+
+                <!-- Notifications -->
+                <button class="icon-btn" title="Notifications" aria-label="Notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="badge-dot"></span>
+                </button>
+
+                <!-- User Quick Link -->
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center gap-2 text-decoration-none dropdown-toggle text-dark" data-bs-toggle="dropdown">
+                        <img src="assets/images/dp.png" alt="Avatar" class="user-avatar-sm" onerror="this.src='https://ui-avatars.com/api/?name=John+Doe&background=4f46e5&color=fff'">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                        <li><a class="dropdown-item" href="#"><i class="fa-regular fa-user me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear me-2"></i>Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Body Content -->
+        <main class="dashboard-content">
+            <!-- Header Title Row -->
+            <div class="page-header-row">
+                <div>
+                    <h1 class="page-title">Executive Dashboard</h1>
+                    <p class="page-subtitle">Real-time performance metrics and business analytics overview.</p>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle btn-sm py-2 px-3 fw-medium" type="button" data-bs-toggle="dropdown">
+                            <i class="fa-regular fa-calendar me-1"></i> Jan 01 - Dec 31
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item active" href="#">This Year (2026)</a></li>
+                            <li><a class="dropdown-item" href="#">Last Year (2025)</a></li>
+                            <li><a class="dropdown-item" href="#">Last 30 Days</a></li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary btn-sm py-2 px-3 fw-medium">
+                        <i class="fa-solid fa-download me-1"></i> Export Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Row 1: 4 KPI Cards with CanvasJS Sparklines -->
+            <div class="row g-4 mb-4">
+                <!-- KPI 1: Total Revenue -->
+                <div class="col-xl-3 col-md-6">
+                    <div class="dashboard-card kpi-card">
+                        <div class="kpi-header">
+                            <div class="kpi-header-left">
+                                <div class="kpi-icon-wrap kpi-icon-primary">
+                                    <i class="fa-solid fa-wallet"></i>
+                                </div>
+                                <span class="kpi-label">Total Revenue</span>
+                            </div>
+                            <span class="trend-badge trend-up">
+                                <i class="fa-solid fa-arrow-trend-up"></i> +14.2%
+                            </span>
+                        </div>
+                        <div class="kpi-metric-row">
+                            <h3 class="kpi-value">$284,350</h3>
+                            <span class="kpi-period">vs last month</span>
+                        </div>
+                        <div class="kpi-chart-wrap">
+                            <div id="sparklineRevenue" class="kpi-sparkline-chart"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPI 2: Active Subscriptions -->
+                <div class="col-xl-3 col-md-6">
+                    <div class="dashboard-card kpi-card">
+                        <div class="kpi-header">
+                            <div class="kpi-header-left">
+                                <div class="kpi-icon-wrap kpi-icon-success">
+                                    <i class="fa-solid fa-users"></i>
+                                </div>
+                                <span class="kpi-label">Active Users</span>
+                            </div>
+                            <span class="trend-badge trend-up">
+                                <i class="fa-solid fa-arrow-trend-up"></i> +8.5%
+                            </span>
+                        </div>
+                        <div class="kpi-metric-row">
+                            <h3 class="kpi-value">3,842</h3>
+                            <span class="kpi-period">vs last month</span>
+                        </div>
+                        <div class="kpi-chart-wrap">
+                            <div id="sparklineSubscriptions" class="kpi-sparkline-chart"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPI 3: Total Orders -->
+                <div class="col-xl-3 col-md-6">
+                    <div class="dashboard-card kpi-card">
+                        <div class="kpi-header">
+                            <div class="kpi-header-left">
+                                <div class="kpi-icon-wrap kpi-icon-warning">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </div>
+                                <span class="kpi-label">Total Orders</span>
+                            </div>
+                            <span class="trend-badge trend-down">
+                                <i class="fa-solid fa-arrow-trend-down"></i> -2.4%
+                            </span>
+                        </div>
+                        <div class="kpi-metric-row">
+                            <h3 class="kpi-value">1,492</h3>
+                            <span class="kpi-period">vs last month</span>
+                        </div>
+                        <div class="kpi-chart-wrap">
+                            <div id="sparklineOrders" class="kpi-sparkline-chart"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPI 4: Conversion Rate -->
+                <div class="col-xl-3 col-md-6">
+                    <div class="dashboard-card kpi-card">
+                        <div class="kpi-header">
+                            <div class="kpi-header-left">
+                                <div class="kpi-icon-wrap kpi-icon-info">
+                                    <i class="fa-solid fa-bullseye"></i>
+                                </div>
+                                <span class="kpi-label">Conversion Rate</span>
+                            </div>
+                            <span class="trend-badge trend-up">
+                                <i class="fa-solid fa-arrow-trend-up"></i> +0.8%
+                            </span>
+                        </div>
+                        <div class="kpi-metric-row">
+                            <h3 class="kpi-value">3.64%</h3>
+                            <span class="kpi-period">vs last month</span>
+                        </div>
+                        <div class="kpi-chart-wrap">
+                            <div id="sparklineConversion" class="kpi-sparkline-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Revenue vs Profit Overview (8 cols) & Traffic Sources (4 cols) -->
+            <div class="row g-4 mb-4">
+                <!-- Large Revenue & Profit Chart -->
+                <div class="col-xl-8">
+                    <div class="dashboard-card p-3">
+                        <div class="card-header-clean">
+                            <div>
+                                <h2 class="card-title-clean">Revenue & Profit Performance</h2>
+                                <p class="card-subtitle-clean">Compare monthly revenue against net profit and target goals</p>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="btn-group chart-filter-btn-group" role="group">
+                                    <button type="button" class="btn chart-filter-btn" data-period="7D">7D</button>
+                                    <button type="button" class="btn chart-filter-btn" data-period="1M">1M</button>
+                                    <button type="button" class="btn chart-filter-btn" data-period="6M">6M</button>
+                                    <button type="button" class="btn chart-filter-btn active" data-period="1Y">1Y</button>
+                                </div>
+                                <button class="btn btn-outline-secondary btn-sm" id="exportRevenueChart" title="Export as PNG">
+                                    <i class="fa-solid fa-camera"></i>
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm" id="printRevenueChart" title="Print Chart">
+                                    <i class="fa-solid fa-print"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <div id="revenueOverviewChart" class="chart-container-large"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acquisition Channels / Traffic Sources Donut Chart -->
+                <div class="col-xl-4">
+                    <div class="dashboard-card p-3">
+                        <div class="card-header-clean">
+                            <div>
+                                <h2 class="card-title-clean">Traffic Sources</h2>
+                                <p class="card-subtitle-clean">Customer acquisition channels</p>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-link text-muted p-0" type="button" data-bs-toggle="dropdown">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#">Download CSV</a></li>
+                                    <li><a class="dropdown-item" href="#">View Full Breakdown</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <div id="trafficSourcesChart" class="chart-container-large"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: Category Sales (5 cols) & Recent Transactions Table (7 cols) -->
+            <div class="row g-4 mb-4">
+                <!-- Sales by Category (Horizontal Bar Chart) -->
+                <div class="col-xl-5">
+                    <div class="dashboard-card p-3">
+                        <div class="card-header-clean">
+                            <div>
+                                <h2 class="card-title-clean">Sales by Category</h2>
+                                <p class="card-subtitle-clean">Revenue generated across top merchandise lines</p>
+                            </div>
+                            <span class="badge bg-primary-subtle text-primary fw-medium px-2 py-1">Top 5</span>
+                        </div>
+                        <div class="p-2">
+                            <div id="categorySalesChart" class="chart-container-medium"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions Table -->
+                <div class="col-xl-7">
+                    <div class="dashboard-card p-3">
+                        <div class="card-header-clean">
+                            <div>
+                                <h2 class="card-title-clean">Recent Transactions</h2>
+                                <p class="card-subtitle-clean">Latest customer orders and fulfillment status</p>
+                            </div>
+                            <a href="#" class="btn btn-sm btn-outline-primary fw-medium">View All Orders</a>
+                        </div>
+                        <div class="table-responsive p-2">
+                            <table class="table-clean">
+                                <thead>
+                                    <tr>
+                                        <th>Customer</th>
+                                        <th>Product / Plan</th>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width:32px;height:32px;font-size:12px;font-weight:600;">AL</div>
+                                                <div>
+                                                    <div class="fw-semibold">Alex Lawson</div>
+                                                    <div class="text-muted small">alex@example.com</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Pro Enterprise Tier</td>
+                                        <td>Nov 24, 2026</td>
+                                        <td class="fw-semibold">$1,250.00</td>
+                                        <td><span class="status-badge paid"><i class="fa-solid fa-check me-1"></i>Paid</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center" style="width:32px;height:32px;font-size:12px;font-weight:600;">SM</div>
+                                                <div>
+                                                    <div class="fw-semibold">Sarah Miller</div>
+                                                    <div class="text-muted small">sarah@corp.io</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Team Annual License</td>
+                                        <td>Nov 23, 2026</td>
+                                        <td class="fw-semibold">$890.00</td>
+                                        <td><span class="status-badge paid"><i class="fa-solid fa-check me-1"></i>Paid</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="rounded-circle bg-warning text-white d-flex align-items-center justify-content-center" style="width:32px;height:32px;font-size:12px;font-weight:600;">DK</div>
+                                                <div>
+                                                    <div class="fw-semibold">David Kim</div>
+                                                    <div class="text-muted small">dkim@tech.net</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Hardware Bundle v2</td>
+                                        <td>Nov 22, 2026</td>
+                                        <td class="fw-semibold">$450.00</td>
+                                        <td><span class="status-badge pending"><i class="fa-solid fa-clock me-1"></i>Pending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="rounded-circle bg-info text-white d-flex align-items-center justify-content-center" style="width:32px;height:32px;font-size:12px;font-weight:600;">EP</div>
+                                                <div>
+                                                    <div class="fw-semibold">Emma Patel</div>
+                                                    <div class="text-muted small">emma@startup.co</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Developer Standard</td>
+                                        <td>Nov 21, 2026</td>
+                                        <td class="fw-semibold">$299.00</td>
+                                        <td><span class="status-badge paid"><i class="fa-solid fa-check me-1"></i>Paid</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center" style="width:32px;height:32px;font-size:12px;font-weight:600;">RW</div>
+                                                <div>
+                                                    <div class="fw-semibold">Robert Wong</div>
+                                                    <div class="text-muted small">rwong@global.com</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Cloud Storage Add-on</td>
+                                        <td>Nov 20, 2026</td>
+                                        <td class="fw-semibold">$120.00</td>
+                                        <td><span class="status-badge failed"><i class="fa-solid fa-xmark me-1"></i>Failed</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div>
+                &copy; 2026 <strong>AnalyticsPro</strong>. Built with <a href="https://canvasjs.com" target="_blank" rel="noopener">CanvasJS Charts</a> & Bootstrap 5.
+            </div>
+            <div>
+                Crafted by <a href="https://vishwas.me/" target="_blank" rel="noopener">Vishwas R</a>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<!-- Bootstrap 5.3 Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- CanvasJS Charts from CDN -->
+<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+<!-- CanvasJS Sync Charts helper from jsDelivr CDN -->
+<script src="https://cdn.jsdelivr.net/gh/vishwas-r/canvasjs-sync-charts@v1.0.0/src/canvasjs-sync-charts.js"></script>
+<!-- Dashboard Initialization Script -->
+<script src="assets/js/scripts.js"></script>
+
+</body>
+</html>
